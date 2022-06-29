@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { TodoContext } from "../../context/AllContext";
 
@@ -43,18 +43,34 @@ export const Form = styled.form`
 `
 
 export const FormComp = () => {
-  const { todo, setTodo, todoList, setTodoList } = useContext(TodoContext);
+  // const { todo, setTodo, todoList, setTodoList } = useContext(TodoContext);
+  const [ todo, setTodo ] = useState("");
+  const [ todoList, setTodoList ] = useState([]);
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
+    const generateID = Math.random() * 100
+
+    const newTodo = {
+      id: generateID,
+      title: todo
+    }
+    setTodoList([...todoList, newTodo]);
+    console.log(todoList);
+  }
 
   return (
-    <Form>
+    <Form
+      onSubmit={handleSubmit}
+    >
       <input
         type="text"
         value={todo}
         onChange={(e) => setTodo(e.target.value)}
         placeholder="Todo"
       />
-      <button>Adicionar</button>
+      <button type="submit">Adicionar</button>
     </Form>
   )
 }
