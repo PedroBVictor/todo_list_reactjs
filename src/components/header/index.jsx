@@ -10,6 +10,7 @@ export const HeaderComp = () => {
   return (
     <Header>
       <h1>TODO APP</h1>
+      
     </Header>
   )
 }

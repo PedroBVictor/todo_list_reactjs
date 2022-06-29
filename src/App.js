@@ -1,10 +1,11 @@
 import { HeaderComp } from "./components/header";
+import { TodoProvider } from "./context/AllContext";
 
 function App() {
   return (
-    <div className="App">
+    <TodoProvider>
       <HeaderComp/>
-    </div>
+    </TodoProvider>
   );
 }
 
