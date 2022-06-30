@@ -1,6 +1,4 @@
-import React, { useContext } from "react";
 import styled from "styled-components";
-import { TodoContext } from "../../context/AllContext";
 
 export const Header = styled.div`
   padding-top: 1rem;
@@ -14,11 +12,10 @@ export const Header = styled.div`
 `
 
 export const HeaderComp = () => {
-  const { todoList } = useContext(TodoContext);
   return (
     <Header>
       <h1>TODO APP</h1>
-      <p>Todo Actives {todoList}</p>
+      <p>Todo Actives </p>
     </Header>
   )
 }

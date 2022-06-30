@@ -1,6 +1,4 @@
-import React, { useContext, useState } from "react";
 import styled from "styled-components";
-import { TodoContext } from "../../context/AllContext";
 
 
 export const Form = styled.form`
@@ -42,22 +40,21 @@ export const Form = styled.form`
   }
 `
 
-export const FormComp = () => {
-  // const { todo, setTodo, todoList, setTodoList } = useContext(TodoContext);
-  const [ todo, setTodo ] = useState("");
-  const [ todoList, setTodoList ] = useState([]);
+export const FormComp = ({ todo, setTodo, list, setList }) => {
   
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const generateID = Math.random() * 100
-
-    const newTodo = {
-      id: generateID,
-      title: todo
+    const newItem = {
+      id: generateID, 
+      title: todo,
+      isComplete: false
     }
-    setTodoList([...todoList, newTodo]);
-    console.log(todoList);
+
+    console.log(newItem)
+    setList([...list, newItem])
+    console.log(list)
   }
 
   return (

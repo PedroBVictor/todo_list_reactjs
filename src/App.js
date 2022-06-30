@@ -1,13 +1,23 @@
+import { useState } from "react";
 import { FormComp } from "./components/form";
 import { HeaderComp } from "./components/header";
-import { TodoProvider } from "./context/AllContext";
 
 function App() {
+  const [ todo, setTodo ] = useState("");
+  const [ todoList, setTodoList ] = useState([]);
+
+
+
   return (
-    <TodoProvider>
-      <HeaderComp/>
-      <FormComp />
-    </TodoProvider>
+    <>
+      <HeaderComp />
+      <FormComp
+        todo={todo}
+        setTodo={setTodo}
+        list={todoList}
+        setList={setTodoList}
+      />
+    </>
   );
 }
 
