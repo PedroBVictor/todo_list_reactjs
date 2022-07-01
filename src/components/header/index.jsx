@@ -11,11 +11,11 @@ export const Header = styled.div`
   margin-bottom: 1rem;
 `
 
-export const HeaderComp = () => {
+export const HeaderComp = ({ list }) => {
   return (
     <Header>
       <h1>TODO APP</h1>
-      <p>Todo Actives </p>
+      <p>Todo Actives {list.length}</p>
     </Header>
   )
 }

@@ -2,41 +2,31 @@ import styled from "styled-components";
 
 
 export const Form = styled.form`
-  text-align: center;
-  padding:0.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto;
-  gap: 10px;
-  
-  width: 300px;
-
-  background: #006eff;
-
   border-radius: 6px;
   input{
+    padding: 14px 32px 14px 16px;
+    border-radius: 4px 0 0 4px;
+    border: 2px solid #5d0cff;
     outline: none;
-    border: none;
-    padding: 5px;
-    width: 80%;
-    border-radius: 4px;
+    width: 320px;
+    background: transparent;
+    color: #fff;
+    &::placeholder{
+      color: #e2e2e2;
+    }
   }
   button{
-    width: 60%;
-    border-radius: 4px;
+    padding: 16px;
     border: none;
-    background: #01459e;
-    color: #f2f2f2;
-    font-size: 16px;
-    padding: 5px;
+    border-radius: 0 4px 4px 0;
     cursor: pointer;
-    transition: all .4s;
-    &:hover{
-      background: #083168;
-      transition: all .4s;
-    }
+    outline: none;
+    background: linear-gradient(90deg,
+      rgba(93, 12, 255, 1) 0%,
+      rgba(155, 0, 250, 1) 100%
+    );
+    color: #fff;
+    text-transform: capitalize; 
   }
 `
 
@@ -45,16 +35,18 @@ export const FormComp = ({ todo, setTodo, list, setList }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if(!todo.trim()){ return console.log(`Tarefa com titulo invalido`) };
+    
     const generateID = Math.random() * 100
     const newItem = {
       id: generateID, 
       title: todo,
-      isComplete: false
     }
-
-    console.log(newItem)
-    setList([...list, newItem])
-    console.log(list)
+    console.log(newItem);
+    setList([...list, newItem]);
+    console.log(list);
+    setTodo("");
+    
   }
 
   return (
@@ -66,6 +58,7 @@ export const FormComp = ({ todo, setTodo, list, setList }) => {
         value={todo}
         onChange={(e) => setTodo(e.target.value)}
         placeholder="Todo"
+        maxLength={25}
       />
       <button type="submit">Adicionar</button>
     </Form>
