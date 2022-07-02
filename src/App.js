@@ -1,11 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FormComp } from "./components/form";
 import { HeaderComp } from "./components/header";
 import { ListComp } from "./components/ListItem";
 
+// Force save todo localStorage
+const getLocalTodos = () => {
+  const updateTodos = localStorage.getItem('todos');
+
+  if (updateTodos) {
+    return JSON.parse(localStorage.getItem('todos'));
+  } else {
+    return [];
+  }
+}
+
 function App() {
   const [todo, setTodo] = useState("");
-  const [todoList, setTodoList] = useState([]);
+  const [todoList, setTodoList] = useState(getLocalTodos());
 
   const handleDelete = (id) => {
     const listTemp = [...todoList];
@@ -13,12 +24,11 @@ function App() {
     setTodoList(listTemp);
   }
 
-  // const handleEdit = (id, newValue) => {
-  //   if(!newValue.trim()) {
-  //     return console.log("Valor invalido")
-  //   }
-  //   setTodoList((e) => e.map((item) => item.id === id ? newValue : item));
-  // }
+  // Saved todos in LS
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todoList));
+  }, [todoList]);
+
 
   return (
     <>
